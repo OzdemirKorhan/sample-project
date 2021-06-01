@@ -298,6 +298,7 @@ export default {
   border: none;
   position: relative;
   width: min(90%, 240px);
+  outline: none;
 }
 .mobile-dropdown {
   min-width: 100%;
@@ -311,11 +312,12 @@ export default {
   color: var(--main-bg-color);
   border-radius: 0.25em;
 }
-.menu>img {
+.menu > img {
   margin-left: auto;
 }
 .user-mobile p {
   font-weight: 300;
+  text-align: left;
 }
 .logout-text {
   font-size: 16px;

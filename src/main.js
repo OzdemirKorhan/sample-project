@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "./assets/css/main.css";
 Vue.config.productionTip = false;
 Vue.component("NavigationBar", () => import("./components/Navigation-bar.vue"));
 Vue.component("Footer", () => import("./components/Footer.vue"));
