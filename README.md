@@ -1,4 +1,26 @@
-# sample-project
+# Scorp-sample-project
+
+## Description:
+```
+This is a sample project made for Scorp that demonstrates: Design skills, State management, SPA developement, Responsive design, Custom Events etc.
+```
+## Design 
+```
+You can see my design process here: https://www.figma.com/file/qUKZRIwlBlOt5OCuYKTIFd/Scorp?node-id=0%3A1
+```
+## Demo
+```
+You can see the demo here: https://scorp-project.netlify.app/#/
+```
+
+## Technologies used:
+```
+Html
+Css
+Vue 2
+Vuex 
+Vue Router
+```
 
 ## Project setup
 ```
@@ -9,16 +31,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
