@@ -130,7 +130,7 @@
             <p>{{ userInfo.email }}</p>
           </div>
 
-          <div @click="logout" class="logout button">
+          <div v-if="userInfo.email" @click="logout" class="logout button">
             <img src="@/assets/log-out.svg" alt="" class="logout-icon" />
             <p class="logout-text">{{ content.logout }}</p>
           </div>
@@ -169,7 +169,7 @@ export default {
         contact_us: "İLETİŞİM",
         login: "GİRİŞ",
         home: "ANASAYFA",
-        logout: "Çıkış",
+        logout: "ÇIKIŞ",
       },
       is_mobile: 0,
     };
@@ -311,7 +311,7 @@ export default {
   color: var(--main-bg-color);
   border-radius: 0.25em;
 }
-.menu img {
+.menu>img {
   margin-left: auto;
 }
 .user-mobile p {
