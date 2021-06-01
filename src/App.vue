@@ -1,32 +1,175 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <NavigationBar v-on:show-modal="showModal" />
+    <Footer />
+    <Login :isModal="isModal" v-on:close-modal="closeModal" />
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return { isModal: 0 };
+  },
+  methods: {
+    showModal() {
+      this.isModal = 1;
+    },
+    closeModal() {
+      this.isModal = 0;
+    },
+  },
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+/* CSS Variables*/
+:root {
+  --main-bg-color: #16153a;
+  --secondary-bg-color: #211f48;
+  --primary-color: #ca1395;
+  --primary-text-color: rgba(255, 255, 255, 0.7);
+  --secondary-text-color: rgba(255, 255, 255, 0.33);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-#nav {
-  padding: 30px;
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
 }
 
-#nav a {
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  background: var(--main-bg-color);
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: Roboto;
+  padding-bottom: 70px;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/* Global styles */
+.container {
+  width: 80%;
+  margin: auto;
+}
+.button {
+  cursor: pointer;
+  user-select: none;
+  transition: background 150ms ease-in-out, color 150ms ease-in-out,
+    border 150ms ease-in-out;
+}
+.language-select {
+  position: relative;
+}
+.language-dropdown {
+  display: none;
+  flex-direction: column;
+  gap: 0.5em;
+  background-color: #fff;
+  position: absolute;
+  padding: 0.2em 0.5em;
+  z-index: 1;
+  right: 0;
+  color: var(--main-bg-color);
+  border-radius: 0.25em;
+}
+.language-select:hover .language-dropdown,
+.language-select:focus .language-dropdown {
+  display: flex;
+}
+.language {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.radio {
+  width: 0.8em;
+}
+.radio img {
+  width: 0.8em;
+}
+.title {
+  color: #fff;
+  max-width: 10ch;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 40px;
+  margin-top: 1.5em;
+}
+.input input,
+textarea {
+  border-radius: 0.25em;
+  background-color: var(--secondary-bg-color);
+  outline: none;
+  border: none;
+  padding: 0.5em;
+  color: #fff;
+}
+.input label {
+  color: var(--primary-text-color);
+  font-weight: lighter;
+  font-size: 20px;
+}
+.form-button {
+  color: var(--primary-color);
+  margin-top: 0.5em;
+  background-color: var(--main-bg-color);
+  border: 3px solid var(--primary-color);
+  padding: 0 0.5em;
+  margin-left: auto;
+  display: block;
   font-weight: bold;
-  color: #2c3e50;
+  letter-spacing: 0.055em;
+  border-radius: 3px;
+  font-size: 25px;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.form-button:hover,
+.form-button:focus {
+  color: #fff;
+  background: var(--primary-color);
+  border: 3px solid var(--primary-color);
 }
 </style>

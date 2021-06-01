@@ -1,18 +1,17 @@
 <template>
-  <div class="home">
-    <Homepage />
+  <div class="about">
+    <Contactpage />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Homepage from "@/components/Homepage.vue";
+import Contactpage from "@/components/Contactpage.vue";
 import { mapActions } from "vuex";
 
 export default {
-  name: "Home",
+  name: "Contact",
   components: {
-    Homepage,
+    Contactpage,
   },
   methods: {
     ...mapActions({
@@ -20,7 +19,7 @@ export default {
     }),
   },
   mounted() {
-    this.changePage(0);
+    this.changePage(1);
   },
 };
 </script>
