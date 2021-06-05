@@ -116,7 +116,7 @@ select {
     font-size: 40px;
     margin-top: 1.5em;
 }
-.input input,
+.input>input,
 textarea {
     border-radius: 0.25em;
     background-color: var(--secondary-bg-color);
@@ -124,6 +124,23 @@ textarea {
     border: none;
     padding: 0.5em;
     color: #fff;
+}
+.country-selector .vs__dropdown-toggle {
+    padding: 0.4em;
+    border-radius: 0.25em;
+    background-color: var(--secondary-bg-color);
+
+    border: none;
+}
+.country-selector .vs__search::placeholder,
+.country-selector .vs__selected,
+.country-selector input {
+    color: #fff;
+}
+
+.country-selector .vs__clear,
+.country-selector .vs__open-indicator {
+    fill: #fff;
 }
 .input label {
     color: var(--primary-text-color);

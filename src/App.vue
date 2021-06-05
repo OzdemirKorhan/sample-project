@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <NavigationBar v-on:show-modal="showModal" />
-    <Footer />
-    <Login :isModal="isModal" v-on:close-modal="closeModal" />
+    <navigation-bar v-on:show-modal="showModal" />
+    <footer-bar />
+    <login :isModal="isModal" v-on:close-modal="closeModal" />
     <router-view />
   </div>
 </template>

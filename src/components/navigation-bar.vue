@@ -8,20 +8,26 @@
           {{ content.title }}
         </h1>
         <h1 v-if="chosenPage === 1" class="page-name">{{ content.contact }}</h1>
+        <h1 v-if="chosenPage === 2" class="page-name">{{ content.toads }}</h1>
       </div>
       <div class="user-info-links">
         <div class="links">
           <a
-            v-if="chosenPage === 1"
+            v-if="chosenPage !== 0"
             @click="route('Home')"
             class="link button"
             >{{ content.home }}</a
           >
           <a
-            v-if="chosenPage === 0"
+            v-if="chosenPage !== 1"
             @click="route('Contact')"
             class="link button"
             >{{ content.contact_us }}</a
+          ><a
+            v-if="chosenPage !== 2"
+            @click="route('Toads')"
+            class="link button"
+            >{{ content.toads }}</a
           >
           <a
             v-if="!userInfo.email"
@@ -72,27 +78,39 @@
           </div>
         </div>
       </div>
-      <button class="menu button">
+      <button class="menu">
         <img
           @click="toggleDropdown"
+          class="button"
           v-if="!is_mobile"
           src="@/assets/Menu.svg"
           alt=""
         />
-        <img @click="toggleDropdown" v-else src="@/assets/close.svg" alt="" />
+        <img
+          @click="toggleDropdown"
+          v-else
+          src="@/assets/close.svg"
+          class="button"
+          alt=""
+        />
         <div v-if="is_mobile" class="mobile-dropdown dropdown">
           <div class="links">
             <a
-              v-if="chosenPage === 1"
+              v-if="chosenPage !== 0"
               @click="route('Home')"
               class="link button"
               >{{ content.home }}</a
             >
             <a
-              v-if="chosenPage === 0"
+              v-if="chosenPage !== 1"
               @click="route('Contact')"
               class="link button"
               >{{ content.contact_us }}</a
+            ><a
+              v-if="chosenPage !== 2"
+              @click="route('Toads')"
+              class="link button"
+              >{{ content.toads }}</a
             >
             <a
               v-if="!userInfo.email"
@@ -142,9 +160,10 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import translations from "../assets/i18n/navigation-bar.json";
 
 export default {
-  name: "NavigationBar",
+  name: "navigationBar",
   data() {
     return {
       content: {
@@ -152,26 +171,12 @@ export default {
         contact: "",
         contact_us: "",
         login: "",
+        toads: "",
         home: "",
         logout: "",
       },
-      content_en: {
-        title: "TOAD",
-        contact: "CONTACT",
-        contact_us: "CONTACT US",
-        login: "LOGIN",
-        home: "HOME",
-        logout: "LOG OUT",
-      },
-      content_tr: {
-        title: "KURBAĞA",
-        contact: "İLETİŞİM",
-        contact_us: "İLETİŞİM",
-        login: "GİRİŞ",
-        home: "ANASAYFA",
-        logout: "ÇIKIŞ",
-      },
       is_mobile: 0,
+      translations: translations,
     };
   },
   methods: {
@@ -194,7 +199,9 @@ export default {
     },
     setContentLanguage() {
       this.content =
-        this.chosenLanguage === "en" ? this.content_en : this.content_tr;
+        this.chosenLanguage === "en"
+          ? this.translations.content_en
+          : this.translations.content_tr;
     },
     toggleDropdown() {
       this.is_mobile = !this.is_mobile;
@@ -285,7 +292,7 @@ export default {
   padding: 0.2em 0.5em;
   flex-shrink: 1;
   font-weight: bold;
-  width: min(60%, 110px);
+  width: max(60%, 105px);
   margin: 0 auto;
   border-radius: 0.25em;
 }

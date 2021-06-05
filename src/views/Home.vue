@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <Homepage />
+    <home-page />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Homepage from "@/components/Homepage.vue";
+import homePage from "@/components/home-page.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Home",
   components: {
-    Homepage,
+    homePage,
   },
   methods: {
     ...mapActions({

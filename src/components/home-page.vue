@@ -7,35 +7,25 @@
 
 <script>
 import { mapGetters } from "vuex";
+import translations from "../assets/i18n/home-page.json";
 
 export default {
-  name: "Homepage",
+  name: "homePage",
   data() {
     return {
       content: {
         title: "",
         text: "",
       },
-      content_en: {
-        title: "Hop With Toad",
-        text:
-          "Frog ran up the path to Toad’s house. He knocked on the front door. There\n" +
-          "      was no answer. “Toad, Toad,” shouted Frog, “wake up. It is spring!”\n" +
-          "      “Blah,” said a voice from inside the house. “Toad, Toad,” cried Frog.",
-      },
-      content_tr: {
-        title: "KÜÇÜK KURBAĞA",
-        text:
-          "      Bir köyde her sene kurbağa yarışı yapılırmış. Yüksek bir yokuşun dibine\n" +
-          "      herkes kurbağasını getirir, onları tepeye doğru yarıştırırlarmış. Bir gün\n" +
-          "      yaşlı bir dede, küçük, cılız bir kurbağa getirmiş yarıştırmak için.",
-      },
+      translations: translations,
     };
   },
   methods: {
     setContentLanguage() {
       this.content =
-        this.chosenLanguage === "en" ? this.content_en : this.content_tr;
+        this.chosenLanguage === "en"
+          ? this.translations.content_en
+          : this.translations.content_tr;
     },
   },
   mounted() {

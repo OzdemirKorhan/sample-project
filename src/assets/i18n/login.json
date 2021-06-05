@@ -1,0 +1,14 @@
+{
+  "content_en": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "login": "LOGIN"
+  },
+  "content_tr": {
+    "name": "İsim",
+    "email": "Eposta",
+    "password": "Şifre",
+    "login": "GİRİŞ"
+  }
+}
