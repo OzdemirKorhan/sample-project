@@ -31,23 +31,14 @@
           />
         </div>
         <div class="input countries">
-          <label for="country"> {{ content.country }}</label
-          ><input
-            v-on:keyup.enter="enter()"
+          <label for="country"> {{ content.country }}</label>
+          <v-select
             id="country"
             v-model="country"
-            type="text"
-          />
-          <div class="countries-dropdown">
-            <div
-              class="country"
-              v-for="country_data in filtered_country_list"
-              :key="country_data.id"
-              @click="country = country_data.name"
-            >
-              <p>{{ country_data.name }}</p>
-            </div>
-          </div>
+            :options="country_list"
+            label="name"
+            class="country-selector"
+          ></v-select>
         </div>
         <div class="input">
           <label for="message">{{ content.message }}</label
@@ -63,9 +54,10 @@
 
 <script>
 import { mapGetters } from "vuex";
+import translations from "../assets/i18n/contact-us.json";
 
 export default {
-  name: "Contactpage",
+  name: "contactPage",
   data() {
     return {
       name: "",
@@ -85,26 +77,6 @@ export default {
         { id: "BR", name: "Brazil" },
         { id: "ZW", name: "Zimbabwe" },
       ],
-      country_list_en: [
-        { id: "TR", name: "Turkey" },
-        { id: "US", name: "United States of America" },
-        { id: "GB", name: "United Kingdom" },
-        { id: "DE", name: "Germany" },
-        { id: "SE", name: "Sweden" },
-        { id: "KE", name: "Kenya" },
-        { id: "BR", name: "Brazil" },
-        { id: "ZW", name: "Zimbabwe" },
-      ],
-      country_list_tr: [
-        { id: "TR", name: "Türkiye" },
-        { id: "US", name: "Amerika Birleşik Devletleri" },
-        { id: "GB", name: "Birleşik Krallık" },
-        { id: "DE", name: "Almanya" },
-        { id: "SE", name: "İsveç" },
-        { id: "KE", name: "Kenya" },
-        { id: "BR", name: "Brezilya" },
-        { id: "ZW", name: "Zimbabwe" },
-      ],
       content: {
         title: "REACH TO US",
         name: "Name",
@@ -114,33 +86,11 @@ export default {
         message: "Your Message",
         send: "SEND",
       },
-      content_tr: {
-        title: "BİZE ULAŞIN",
-        name: "İsim",
-        email: "Eposta",
-        phone: "Telefon Numarası",
-        country: "Ülke",
-        message: "Mesaj",
-        send: "GÖNDER",
-      },
-      content_en: {
-        title: "REACH TO US",
-        name: "Name",
-        email: "Email",
-        phone: "Phone Number",
-        country: "Country",
-        message: "Your Message",
-        send: "SEND",
-      },
+      translations: translations,
     };
   },
   computed: {
     ...mapGetters(["userInfo", "chosenLanguage"]),
-    filtered_country_list() {
-      return this.country_list.filter((x) => {
-        return x.name.toLowerCase().includes(this.country.toLowerCase());
-      });
-    },
   },
   methods: {
     send() {
@@ -149,14 +99,16 @@ export default {
           name: this.name,
           email: this.email,
           phonenumber: this.phone,
-          country_code:
-            this.filtered_country_list.length === 1
-              ? this.filtered_country_list[0].id
-              : this.country,
+          country_code: this.country ? this.country.id : "",
           text: this.message,
         };
         console.log("Contact info: ", contact_info);
         this.message = "";
+        alert(
+          this.chosenLanguage === "en"
+            ? "Your message is sent."
+            : "Mesajınız gönderilmiştir."
+        );
       }
     },
     validateEmail(value) {
@@ -171,15 +123,13 @@ export default {
     },
     setContentLanguage() {
       this.content =
-        this.chosenLanguage === "en" ? this.content_en : this.content_tr;
+        this.chosenLanguage === "en"
+          ? this.translations.content_en
+          : this.translations.content_tr;
       this.country_list =
         this.chosenLanguage === "en"
-          ? this.country_list_en
-          : this.country_list_tr;
-    },
-    enter() {
-      this.country = this.filtered_country_list[0].name;
-      document.querySelector("#country").blur();
+          ? this.translations.country_list_en
+          : this.translations.country_list_tr;
     },
   },
   mounted() {
@@ -248,29 +198,11 @@ export default {
 .countries {
   position: relative;
 }
-.countries-dropdown {
-  display: none;
-  background-color: #fff;
-  position: absolute;
-  padding: 0.2em 0.5em;
-  z-index: 1;
-  left: 0;
-  color: var(--main-bg-color);
-  border-radius: 0.25em;
-  margin-top: 4.5em;
-  user-select: none;
-}
 
-#country:focus + .countries-dropdown,
-.countries:hover .countries-dropdown {
-  display: block;
-}
-.country:hover {
-  color: var(--primary-color);
-}
 @media (max-width: 50em) {
   .input {
     width: 100%;
   }
 }
 </style>
+<style></style>

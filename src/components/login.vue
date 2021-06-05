@@ -41,36 +41,36 @@
         </div>
         <form class="input-areas">
           <div class="input">
-            <label for="name">{{ content.name }}</label
+            <label for="login-name">{{ content.name }}</label
             ><input
               :style="[
                 name_error ? { border: '2px solid red' } : { border: 'none' },
               ]"
               v-model="name"
-              id="name"
+              id="login-name"
               type="text"
             />
           </div>
           <div class="input">
-            <label for="email">{{ content.email }}</label
+            <label for="login-email">{{ content.email }}</label
             ><input
               :style="[
                 email_error ? { border: '2px solid red' } : { border: 'none' },
               ]"
               v-model="email"
-              id="email"
+              id="login-email"
               type="text"
             />
           </div>
           <div class="input">
-            <label for="password">{{ content.password }}</label>
+            <label for="login-password">{{ content.password }}</label>
             <input
               :style="[
                 password_error
                   ? { border: '2px solid red' }
                   : { border: 'none' },
               ]"
-              id="password"
+              id="login-password"
               v-model="password"
               type="password"
             />
@@ -86,9 +86,10 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import translations from "../assets/i18n/login.json";
 
 export default {
-  name: "Login",
+  name: "login",
   props: ["isModal"],
   data() {
     return {
@@ -105,18 +106,7 @@ export default {
         password: "",
         login: "",
       },
-      content_tr: {
-        name: "İsim",
-        email: "Eposta",
-        password: "Şifre",
-        login: "GİRİŞ",
-      },
-      content_en: {
-        name: "Name",
-        email: "Email",
-        password: "Password",
-        login: "LOGIN",
-      },
+      translations: translations,
     };
   },
   methods: {
@@ -141,7 +131,9 @@ export default {
     },
     setContentLanguage() {
       this.content =
-        this.chosenLanguage === "en" ? this.content_en : this.content_tr;
+        this.chosenLanguage === "en"
+          ? this.translations.content_en
+          : this.translations.content_tr;
     },
   },
   watch: {

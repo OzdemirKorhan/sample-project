@@ -1,0 +1,20 @@
+{
+  "content_en": {
+    "title": "TOAD",
+    "contact": "CONTACT",
+    "contact_us": "CONTACT US",
+    "login": "LOGIN",
+    "toads": "TOADS",
+    "home": "HOME",
+    "logout": "LOG OUT"
+  },
+  "content_tr": {
+    "title": "KURBAĞA",
+    "contact": "İLETİŞİM",
+    "contact_us": "İLETİŞİM",
+    "login": "GİRİŞ",
+    "toads": "KURBAĞALAR",
+    "home": "ANASAYFA",
+    "logout": "ÇIKIŞ"
+  }
+}
