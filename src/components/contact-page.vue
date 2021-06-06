@@ -166,6 +166,7 @@ export default {
     },
     chosenLanguage: function () {
       this.setContentLanguage();
+      this.country = "";
     },
   },
 };
